@@ -8,5 +8,5 @@ try:
     else:
         print("The number is zero.")
 
-except ValueError:
+except:
     print("Invalid input! Please enter a valid number.")
