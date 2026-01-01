@@ -1,0 +1,55 @@
+"""interview Coding Questions in Python""
+Find common prefix among a list of strings
+from os.path import commonprefix
+strings = ["flower","flow","flight"]
+print(commonprefix(strings))  # 'fl'
+
+Replace all spaces in a string with "_"
+s = "hello world python"
+print(s.replace(" ", "_"))
+
+Flatten a nested list
+nested = [[1,2],[3,4],[5]]
+flat = [item for sublist in nested for item in sublist]
+print(flat)  # [1,2,3,4,5]
+
+Find sum of first n natural numbers
+n = 10
+print(n*(n+1)//2)  # 55
+
+Count the number of unique characters in a string
+s = "hello"
+unique_chars = len(set(s))
+print(unique_chars)  # 4
+Count the number of vowels and consonants in a string
+s = "Hello World"
+vowels = "aeiouAEIOU"
+v_count = sum(1 for ch in s if ch in vowels)
+c_count = sum(1 for ch in s if ch.isalpha() and ch not in vowels)
+print("Vowels:", v_count, "Consonants:", c_count)
+
+ Check if a number is a perfect number
+
+(A perfect number equals the sum of its proper divisors)
+
+n = 28
+sum_div = sum(i for i in range(1, n) if n % i == 0)
+print(sum_div == n)  # True
+
+ Merge two dictionaries
+d1 = {'a':1, 'b':2}
+d2 = {'b':3, 'c':4}
+merged = {**d1, **d2}  # If keys overlap, d2 overrides
+print(merged)  # {'a': 1, 'b': 3, 'c': 4}
+
+Count occurrences of each character in a string
+from collections import Counter
+s = "hello world"
+freq = Counter(s)
+print(freq)
+
+Check if a list is sorted
+lst = [1,2,3,4,5]
+is_sorted = all(lst[i] <= lst[i+1] for i in range(len(lst)-1))
+print(is_sorted)  # True
+"""
