@@ -1,8 +1,8 @@
 # Sample dictionary
 data = {
-    "name": "Vikyt",
+    "name": "Vikhyath",
     "course": "CS",
-    "college": "PS College"
+    "college": "PeS College"
 }
 
 # 1️⃣ Print Keys
