@@ -1,70 +1,106 @@
 # =====================================
-# 1️⃣ Frequency of Words in Sentence
+# 1️⃣ String + Function Program
 # =====================================
-sentence = input("Enter a sentence: ").lower()
-words = sentence.split()
+def string_analysis(text):
+    length = len(text)
+    vowels = sum(1 for ch in text.lower() if ch in "aeiou")
+    reversed_text = text[::-1]
 
-word_freq = {}
+    print("\nString Analysis")
+    print("Length:", length)
+    print("Vowels:", vowels)
+    print("Reversed:", reversed_text)
 
-for word in words:
-    word_freq[word] = word_freq.get(word, 0) + 1
-
-print("\nWord Frequency:", word_freq)
-
-
-# =====================================
-# 2️⃣ Dictionary Comprehension
-# =====================================
-n = int(input("\nEnter limit for square dictionary: "))
-square_dict = {x: x*x for x in range(1, n+1)}
-
-print("Dictionary using comprehension:", square_dict)
+text = input("Enter a string: ")
+string_analysis(text)
 
 
 # =====================================
-# 3️⃣ Convert Dictionary to List
+# 2️⃣ List + Function Program
 # =====================================
-dict_to_list = list(square_dict.items())
-print("Dictionary converted to list:", dict_to_list)
+def list_analysis(lst):
+    print("\nList Analysis")
+    print("Sum:", sum(lst))
+    print("Maximum:", max(lst))
+    print("Minimum:", min(lst))
 
-
-# =====================================
-# 4️⃣ Find Duplicate Values
-# =====================================
-sample_dict = {"a": 10, "b": 20, "c": 10, "d": 30, "e": 20}
-
-values_seen = []
-duplicate_values = []
-
-for value in sample_dict.values():
-    if value in values_seen and value not in duplicate_values:
-        duplicate_values.append(value)
-    else:
-        values_seen.append(value)
-
-print("Duplicate values:", duplicate_values)
+n = int(input("\nEnter number of elements in list: "))
+numbers = [int(input(f"Enter element {i+1}: ")) for i in range(n)]
+list_analysis(numbers)
 
 
 # =====================================
-# 5️⃣ Report Card Generator
+# 3️⃣ Dictionary + Function Program
 # =====================================
-students = {}
-m = int(input("\nEnter number of students: "))
+def dictionary_analysis(d):
+    print("\nDictionary Analysis")
+    print("Keys:", list(d.keys()))
+    print("Values:", list(d.values()))
+    print("Total items:", len(d))
 
+d = {}
+m = int(input("\nEnter number of key-value pairs: "))
 for i in range(m):
-    name = input("Enter student name: ")
-    marks = int(input("Enter marks: "))
-    students[name] = marks
+    key = input("Enter key: ")
+    value = input("Enter value: ")
+    d[key] = value
 
-print("\nReport Card")
-for name, marks in students.items():
-    if marks >= 75:
-        grade = "A"
-    elif marks >= 60:
-        grade = "B"
-    elif marks >= 40:
-        grade = "C"
-    else:
-        grade = "Fail"
+dictionary_analysis(d)
 
-    print(name, ":", marks, "Grade:", grade)
+
+# =====================================
+# 4️⃣ Menu-Driven Mini Project (Simple Calculator)
+# =====================================
+def calculator():
+    while True:
+        print("\nCalculator Menu")
+        print("1.Add  2.Sub  3.Mul  4.Div  5.Exit")
+
+        choice = int(input("Enter choice: "))
+
+        if choice == 5:
+            break
+
+        a = float(input("Enter first number: "))
+        b = float(input("Enter second number: "))
+
+        if choice == 1:
+            print("Result:", a + b)
+        elif choice == 2:
+            print("Result:", a - b)
+        elif choice == 3:
+            print("Result:", a * b)
+        elif choice == 4:
+            if b != 0:
+                print("Result:", a / b)
+            else:
+                print("Division not allowed")
+        else:
+            print("Invalid choice")
+
+calculator()
+
+
+# =====================================
+# 5️⃣ Quiz System
+# =====================================
+def quiz():
+    questions = {
+        "What is 2 + 2?": "4",
+        "Capital of India?": "Delhi",
+        "Python is a language? (yes/no)": "yes"
+    }
+
+    score = 0
+
+    for question, answer in questions.items():
+        user_answer = input("\n" + question + " ")
+        if user_answer.strip().lower() == answer.lower():
+            print("Correct!")
+            score += 1
+        else:
+            print("Wrong!")
+
+    print("\nFinal Score:", score, "/", len(questions))
+
+quiz()
