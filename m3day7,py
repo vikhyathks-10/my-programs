@@ -1,0 +1,90 @@
+import os
+
+while True:
+    print("\n----- FILE OPERATIONS MENU -----")
+    print("1. Copy one file to another")
+    print("2. Merge two files")
+    print("3. Compare two files")
+    print("4. Split file into two parts")
+    print("5. Create multiple files automatically")
+    print("6. Exit")
+
+    choice = input("Enter your choice: ")
+
+    # 1. Copy file
+    if choice == "1":
+        source = input("Enter source file name: ")
+        destination = input("Enter destination file name: ")
+
+        with open(source, "r") as f1:
+            data = f1.read()
+
+        with open(destination, "w") as f2:
+            f2.write(data)
+
+        print("File copied successfully.")
+
+    # 2. Merge two files
+    elif choice == "2":
+        file1 = input("Enter first file name: ")
+        file2 = input("Enter second file name: ")
+        merged = input("Enter merged file name: ")
+
+        with open(file1, "r") as f1, open(file2, "r") as f2:
+            data1 = f1.read()
+            data2 = f2.read()
+
+        with open(merged, "w") as f3:
+            f3.write(data1 + "\n" + data2)
+
+        print("Files merged successfully.")
+
+    # 3. Compare two files
+    elif choice == "3":
+        file1 = input("Enter first file name: ")
+        file2 = input("Enter second file name: ")
+
+        with open(file1, "r") as f1, open(file2, "r") as f2:
+            data1 = f1.read()
+            data2 = f2.read()
+
+        if data1 == data2:
+            print("Both files are identical.")
+        else:
+            print("Files are different.")
+
+    # 4. Split file into two parts
+    elif choice == "4":
+        file = input("Enter file name: ")
+
+        with open(file, "r") as f:
+            data = f.read()
+
+        mid = len(data) // 2
+
+        with open("part1.txt", "w") as f1:
+            f1.write(data[:mid])
+
+        with open("part2.txt", "w") as f2:
+            f2.write(data[mid:])
+
+        print("File split into part1.txt and part2.txt")
+
+    # 5. Create multiple files
+    elif choice == "5":
+        n = int(input("How many files to create: "))
+
+        for i in range(1, n + 1):
+            filename = f"file{i}.txt"
+            with open(filename, "w") as f:
+                f.write(f"This is {filename}")
+
+        print("Multiple files created successfully.")
+
+    # Exit
+    elif choice == "6":
+        print("Program exited.")
+        break
+
+    else:
+        print("Invalid choice. Try again.")
