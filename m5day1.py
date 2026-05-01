@@ -9,11 +9,7 @@ print(os.getcwd())
 
 
 # 🔹 2. Change Directory
-# Example: Change to a folder path
-# ⚠️ Change the path according to your system
-
-# os.chdir("C:/Users/YourName/Documents")
-
+# os.chdir("C:/Users/vikki/Documents")
 # print("\n--- After Changing Directory ---")
 # print(os.getcwd())
 
