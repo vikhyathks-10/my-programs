@@ -20,7 +20,7 @@ print("\n--- defaultdict Example ---")
 
 students = defaultdict(list)
 
-students["Python"].append("Vikyat")
+students["Python"].append("Vikhyath")
 students["Python"].append("Rahul")
 students["Java"].append("Anil")
 
