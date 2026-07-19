@@ -1,0 +1,3 @@
+Welcome to Python File Handling.
+This is Day 19 Practice.
+Appending a new line.
