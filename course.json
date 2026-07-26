@@ -1,0 +1,11 @@
+{
+    "course": "Python Mastery",
+    "month": 7,
+    "topics": [
+        "Python",
+        "DSA",
+        "APIs",
+        "Database",
+        "File Processing"
+    ]
+}
