@@ -28,4 +28,4 @@
 
 ## Author
 
-Vikhyath Bharadwaj k s
+vikhyath bharadwaj k s
