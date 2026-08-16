@@ -1,0 +1,102 @@
+[
+    {
+        "question": "Which language is used for Python development?",
+        "options": [
+            "Python",
+            "Java",
+            "C++",
+            "HTML"
+        ],
+        "answer": "Python"
+    },
+    {
+        "question": "Which keyword is used to define a function in Python?",
+        "options": [
+            "function",
+            "def",
+            "fun",
+            "define"
+        ],
+        "answer": "def"
+    },
+    {
+        "question": "Which data type stores True or False?",
+        "options": [
+            "String",
+            "Integer",
+            "Boolean",
+            "List"
+        ],
+        "answer": "Boolean"
+    },
+    {
+        "question": "Which library is commonly used to create GUI applications in Python?",
+        "options": [
+            "NumPy",
+            "Tkinter",
+            "Pandas",
+            "Requests"
+        ],
+        "answer": "Tkinter"
+    },
+    {
+        "question": "Which method is used to add an item to a Python list?",
+        "options": [
+            "add()",
+            "insert()",
+            "append()",
+            "push()"
+        ],
+        "answer": "append()"
+    },
+    {
+        "question": "Which symbol is used for comments in Python?",
+        "options": [
+            "//",
+            "/* */",
+            "#",
+            "<!-- -->"
+        ],
+        "answer": "#"
+    },
+    {
+        "question": "Which keyword is used to handle exceptions?",
+        "options": [
+            "catch",
+            "try",
+            "error",
+            "handle"
+        ],
+        "answer": "try"
+    },
+    {
+        "question": "Which function is used to get input from the user?",
+        "options": [
+            "get()",
+            "input()",
+            "read()",
+            "scan()"
+        ],
+        "answer": "input"
+    },
+    {
+        "question": "Which collection stores key-value pairs?",
+        "options": [
+            "List",
+            "Tuple",
+            "Set",
+            "Dictionary"
+        ],
+        "answer": "Dictionary"
+    },
+    {
+        "question": "Which keyword is used to create a class in Python?",
+        "options": [
+            "object",
+            "class",
+            "struct",
+            "define"
+        ],
+        "answer": "class"
+    }
+]
