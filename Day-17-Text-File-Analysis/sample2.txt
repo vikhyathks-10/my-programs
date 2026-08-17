@@ -1,0 +1,3 @@
+Python is used for web development.
+Python is also used for data analysis.
+Programming languages are useful for solving problems.

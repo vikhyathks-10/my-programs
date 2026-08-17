@@ -1,0 +1,3 @@
+Learning Python requires practice.
+Practice makes programming easier.
+Python programming can help students build useful applications.
