@@ -1,0 +1,28 @@
+{
+    "students": [
+        {
+            "id": "S101",
+            "name": "Rahul",
+            "course": "CSE",
+            "age": 20
+        },
+        {
+            "id": "S102",
+            "name": "Priya",
+            "course": "ISE",
+            "age": 21
+        },
+        {
+            "id": "S103",
+            "name": "Arjun",
+            "course": "ECE",
+            "age": 20
+        },
+        {
+            "id": "S104",
+            "name": "sneha k s",
+            "course": "CSE",
+            "age": 21
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "application": {
+        "name": "Student JSON Manager",
+        "version": "1.0"
+    },
+    "settings": {
+        "theme": "dark",
+        "language": "English",
+        "notifications": true
+    }
+}
