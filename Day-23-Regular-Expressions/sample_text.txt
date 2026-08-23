@@ -1,0 +1,33 @@
+
+Welcome to the Python Regular Expression Analyzer.
+
+Contact information:
+
+Email:
+vikhyath@example.com
+support@python.org
+admin@gmail.com
+
+Phone numbers:
++91-9876543210
++91 8765432109
+9876543210
+080-12345678
+
+Useful websites:
+https://www.python.org
+https://github.com
+https://www.google.com
+
+Important dates:
+15-08-2026
+23/08/2026
+01-09-2026
+25/12/2026
+
+Python is a powerful programming language.
+Regular expressions are useful for searching,
+extracting and validating text.
+
+The project was created on 23/08/2026.
+For support, contact help@example.com.
