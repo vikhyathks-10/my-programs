@@ -1,0 +1,30 @@
+2026-08-29 15:06:09,356 - INFO - Logging and Debugging application started.
+2026-08-29 15:06:15,172 - DEBUG - Menu choice selected: 1
+2026-08-29 15:06:15,173 - INFO - Program 146 started.
+2026-08-29 15:06:15,174 - DEBUG - Debug message: basic log function started.
+2026-08-29 15:06:15,174 - INFO - Information message: program is running.
+2026-08-29 15:06:15,174 - WARNING - Warning message: this is a sample warning.
+2026-08-29 15:06:15,175 - INFO - Program 146 completed.
+2026-08-29 15:06:19,861 - DEBUG - Menu choice selected: 2
+2026-08-29 15:06:19,861 - INFO - Program 147 started.
+2026-08-29 15:06:46,288 - ERROR - ZeroDivisionError occurred: division by zero
+2026-08-29 15:06:46,289 - INFO - Program 147 completed.
+2026-08-29 15:06:51,011 - DEBUG - Menu choice selected: 3
+2026-08-29 15:06:51,011 - DEBUG - This is a DEBUG message.
+2026-08-29 15:06:51,012 - INFO - This is an INFO message.
+2026-08-29 15:06:51,012 - WARNING - This is a WARNING message.
+2026-08-29 15:06:51,012 - ERROR - This is an ERROR message.
+2026-08-29 15:06:51,012 - CRITICAL - This is a CRITICAL message.
+2026-08-29 15:06:55,557 - DEBUG - Menu choice selected: 4
+2026-08-29 15:06:55,558 - INFO - Student marks analyzer started.
+2026-08-29 15:07:02,739 - DEBUG - Marks entered for vikki: 89.0
+2026-08-29 15:07:02,739 - INFO - Student analyzed successfully: vikki, Grade: B
+2026-08-29 15:07:02,739 - INFO - Student marks analyzer finished.
+2026-08-29 15:07:10,124 - DEBUG - Menu choice selected: 5
+2026-08-29 15:07:10,125 - INFO - Activity logger started.
+2026-08-29 15:07:18,342 - INFO - Activity recorded: reading
+2026-08-29 15:07:35,877 - INFO - User finished entering activities.
+2026-08-29 15:07:35,878 - INFO - Activity logger completed.
+2026-08-29 15:07:42,240 - DEBUG - Menu choice selected: 6
+2026-08-29 15:07:47,727 - DEBUG - Menu choice selected: 7
+2026-08-29 15:07:47,728 - INFO - Application closed by user.
