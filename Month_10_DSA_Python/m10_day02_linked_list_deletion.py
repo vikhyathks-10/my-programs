@@ -69,6 +69,7 @@ class LinkedList:
 
         deleted_value = self.head.data
         self.head = self.head.next
+
         print("Deleted first node:", deleted_value)
 
     # 7. Delete the last node
@@ -77,6 +78,7 @@ class LinkedList:
             print("Linked list is empty. Nothing to delete.")
             return
 
+        # Only one node
         if self.head.next is None:
             deleted_value = self.head.data
             self.head = None
@@ -85,11 +87,19 @@ class LinkedList:
 
         current = self.head
 
+        # Stop at the second-last node
         while current.next is not None and current.next.next is not None:
             current = current.next
 
-        deleted_value = current.next.data
+        # Delete the last node
+        last_node = current.next
+
+        if last_node is None:
+            return
+
+        deleted_value = last_node.data
         current.next = None
+
         print("Deleted last node:", deleted_value)
 
     # 8. Delete a node at a given position (1-based)
@@ -102,6 +112,7 @@ class LinkedList:
             print("Linked list is empty. Nothing to delete.")
             return
 
+        # Delete first node
         if position == 1:
             self.delete_first()
             return
@@ -113,14 +124,18 @@ class LinkedList:
             if current.next is None:
                 print("Position out of range.")
                 return
+
             current = current.next
 
-        if current.next is None:
+        target = current.next
+
+        if target is None:
             print("Position out of range.")
             return
 
-        deleted_value = current.next.data
-        current.next = current.next.next
+        deleted_value = target.data
+        current.next = target.next
+
         print("Deleted node at position", position, ":", deleted_value)
 
     # 9. Delete the first node with a given value
@@ -129,6 +144,7 @@ class LinkedList:
             print("Linked list is empty. Nothing to delete.")
             return
 
+        # Check the head node
         if self.head.data == value:
             self.head = self.head.next
             print("Deleted node with value:", value)
@@ -137,12 +153,14 @@ class LinkedList:
         current = self.head
 
         while current.next is not None:
-            if current.next.data == value:
-                current.next = current.next.next
+            target = current.next
+
+            if target.data == value:
+                current.next = target.next
                 print("Deleted node with value:", value)
                 return
 
-            current = current.next
+            current = target
 
         print("Value not found.")
 
@@ -159,11 +177,13 @@ class LinkedList:
         current = self.head
 
         while current is not None and current.next is not None:
-            if current.next.data == value:
-                current.next = current.next.next
+            target = current.next
+
+            if target.data == value:
+                current.next = target.next
                 deleted_count += 1
             else:
-                current = current.next
+                current = target
 
         if deleted_count == 0:
             print("Value not found.")
@@ -201,7 +221,7 @@ def program_9(linked_list: LinkedList):
     linked_list.display()
 
 
-# Program 10: Delete all occurrences of a given value
+# Program 10: Delete all occurrences
 def program_10(linked_list: LinkedList):
     value = int(input("Enter value to delete completely: "))
     linked_list.delete_all_occurrences(value)
@@ -241,6 +261,7 @@ def main():
                     int,
                     input("Enter elements separated by spaces: ").split()
                 ))
+
                 linked_list.create(values)
                 linked_list.display()
 
@@ -264,6 +285,7 @@ def main():
 
             elif choice == 8:
                 print("\nRunning all deletion programs...")
+
                 print("\nProgram 6: Delete first node")
                 program_6(linked_list)
 
