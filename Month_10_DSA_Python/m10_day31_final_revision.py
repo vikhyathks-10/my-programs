@@ -1,6 +1,7 @@
+
 from __future__ import annotations
 
-from collections import defaultdict
+from collections import defaultdict, deque
 from dataclasses import dataclass
 from typing import Optional
 
@@ -17,26 +18,42 @@ class TreeNode:
 
 
 def build_tree(values: list[Optional[int]]) -> Optional[TreeNode]:
-    """Build a binary tree from level-order input. None represents a missing node."""
-    if not values or values[0] is None:
+    """Build a binary tree from level-order values."""
+
+    if not values:
         return None
 
-    root = TreeNode(values[0])
-    queue: list[TreeNode] = [root]
+    root_value = values[0]
+
+    if root_value is None:
+        return None
+
+    root = TreeNode(root_value)
+    queue: deque[TreeNode] = deque([root])
     index = 1
 
     while queue and index < len(values):
-        current = queue.pop(0)
+        current = queue.popleft()
 
-        if index < len(values) and values[index] is not None:
-            current.left = TreeNode(values[index])
-            queue.append(current.left)
-        index += 1
+        # Create left child
+        if index < len(values):
+            left_value = values[index]
 
-        if index < len(values) and values[index] is not None:
-            current.right = TreeNode(values[index])
-            queue.append(current.right)
-        index += 1
+            if left_value is not None:
+                current.left = TreeNode(left_value)
+                queue.append(current.left)
+
+            index += 1
+
+        # Create right child
+        if index < len(values):
+            right_value = values[index]
+
+            if right_value is not None:
+                current.right = TreeNode(right_value)
+                queue.append(current.right)
+
+            index += 1
 
     return root
 
@@ -56,19 +73,14 @@ def preorder(root: Optional[TreeNode]) -> list[int]:
     return result
 
 
-def display_tree_as_list(root: Optional[TreeNode]) -> None:
-    print("Preorder:", preorder(root))
-
-
 # ============================================================
 # PROGRAM 151 — FLATTEN BINARY TREE INTO LINKED LIST
 # ============================================================
 
 def flatten_binary_tree(root: Optional[TreeNode]) -> None:
     """
-    Flatten the tree in preorder using the original nodes.
-    Every left pointer becomes None.
-    Every right pointer points to the next preorder node.
+    Flatten the binary tree in preorder.
+    Uses the original nodes and O(1) auxiliary space.
     """
 
     current = root
@@ -91,12 +103,14 @@ def flatten_binary_tree(root: Optional[TreeNode]) -> None:
 def program_151() -> None:
     print("\nPROGRAM 151 — FLATTEN BINARY TREE")
 
-    values = list(
-        map(
-            lambda x: None if x.lower() == "null" else int(x),
-            input("Enter level-order values (use null for missing nodes): ").split()
-        )
-    )
+    raw_values = input(
+        "Enter level-order values (use null for missing nodes): "
+    ).split()
+
+    values: list[Optional[int]] = [
+        None if value.lower() == "null" else int(value)
+        for value in raw_values
+    ]
 
     root = build_tree(values)
 
@@ -111,7 +125,7 @@ def program_151() -> None:
         result.append(current.data)
 
         if current.left is not None:
-            print("Error: A left pointer is not None.")
+            print("Error: Left pointer is not None.")
             return
 
         current = current.right
@@ -124,6 +138,7 @@ def program_151() -> None:
 # ============================================================
 
 class MinStack:
+
     def __init__(self) -> None:
         self.stack: list[int] = []
         self.min_stack: list[int] = []
@@ -182,6 +197,7 @@ def program_152() -> None:
 
         elif choice == "2":
             removed = stack.pop()
+
             if removed is not None:
                 print("Popped:", removed)
 
@@ -199,8 +215,24 @@ def program_152() -> None:
 
 
 # ============================================================
-# PROGRAM 153 — LOWEST COMMON ANCESTOR IN A BST
+# PROGRAM 153 — LOWEST COMMON ANCESTOR IN BST
 # ============================================================
+
+def bst_contains(root: Optional[TreeNode], target: int) -> bool:
+    current = root
+
+    while current is not None:
+
+        if target == current.data:
+            return True
+
+        if target < current.data:
+            current = current.left
+        else:
+            current = current.right
+
+    return False
+
 
 def lowest_common_ancestor(
     root: Optional[TreeNode],
@@ -224,18 +256,21 @@ def lowest_common_ancestor(
     return None
 
 
-def bst_contains(root: Optional[TreeNode], target: int) -> bool:
-    current = root
+def insert_bst(
+    root: Optional[TreeNode],
+    value: int
+) -> TreeNode:
 
-    while current is not None:
-        if target == current.data:
-            return True
-        elif target < current.data:
-            current = current.left
-        else:
-            current = current.right
+    if root is None:
+        return TreeNode(value)
 
-    return False
+    if value < root.data:
+        root.left = insert_bst(root.left, value)
+
+    elif value > root.data:
+        root.right = insert_bst(root.right, value)
+
+    return root
 
 
 def program_153() -> None:
@@ -245,19 +280,8 @@ def program_153() -> None:
 
     root: Optional[TreeNode] = None
 
-    def insert(node: Optional[TreeNode], value: int) -> TreeNode:
-        if node is None:
-            return TreeNode(value)
-
-        if value < node.data:
-            node.left = insert(node.left, value)
-        elif value > node.data:
-            node.right = insert(node.right, value)
-
-        return node
-
     for value in values:
-        root = insert(root, value)
+        root = insert_bst(root, value)
 
     p = int(input("Enter first node: "))
     q = int(input("Enter second node: "))
@@ -278,7 +302,12 @@ def program_153() -> None:
 # PROGRAM 154 — MERGE TWO BINARY MAX HEAPS
 # ============================================================
 
-def heapify_down(heap: list[int], size: int, index: int) -> None:
+def heapify_down(
+    heap: list[int],
+    size: int,
+    index: int
+) -> None:
+
     largest = index
     left = 2 * index + 1
     right = 2 * index + 2
@@ -291,6 +320,7 @@ def heapify_down(heap: list[int], size: int, index: int) -> None:
 
     if largest != index:
         heap[index], heap[largest] = heap[largest], heap[index]
+
         heapify_down(heap, size, largest)
 
 
@@ -301,9 +331,14 @@ def build_max_heap(heap: list[int]) -> None:
         heapify_down(heap, size, index)
 
 
-def merge_max_heaps(heap1: list[int], heap2: list[int]) -> list[int]:
+def merge_max_heaps(
+    heap1: list[int],
+    heap2: list[int]
+) -> list[int]:
+
     merged = heap1 + heap2
     build_max_heap(merged)
+
     return merged
 
 
@@ -323,61 +358,63 @@ def program_154() -> None:
 # ============================================================
 
 class LFUCache:
-    """
-    O(1) average-time LFU cache.
-
-    - key_to_value: stores key -> value
-    - key_to_freq: stores key -> frequency
-    - freq_to_keys: stores keys grouped by frequency
-    - Each frequency group uses an ordered dictionary.
-      The oldest key in a group is the least recently used.
-    """
 
     def __init__(self, capacity: int) -> None:
         self.capacity = capacity
+
         self.key_to_value: dict[int, int] = {}
         self.key_to_freq: dict[int, int] = {}
+
+        # Each dictionary preserves insertion order.
+        # Oldest key in a frequency group = least recently used.
         self.freq_to_keys: dict[int, dict[int, None]] = defaultdict(dict)
+
         self.min_freq = 0
 
     def _update_frequency(self, key: int) -> None:
         frequency = self.key_to_freq[key]
 
-        # Remove key from its old frequency group.
+        # Remove key from its current frequency group.
         del self.freq_to_keys[frequency][key]
 
-        # If this was the last key at the minimum frequency,
-        # increase the minimum frequency.
+        # Remove empty frequency group.
         if not self.freq_to_keys[frequency]:
             del self.freq_to_keys[frequency]
 
             if self.min_freq == frequency:
                 self.min_freq += 1
 
-        # Move key to the next frequency group.
+        # Increase frequency.
         new_frequency = frequency + 1
+
         self.key_to_freq[key] = new_frequency
+
+        # Insert at the end to mark it as most recently used.
         self.freq_to_keys[new_frequency][key] = None
 
     def get(self, key: int) -> int:
+
         if key not in self.key_to_value:
             return -1
 
         self._update_frequency(key)
+
         return self.key_to_value[key]
 
     def put(self, key: int, value: int) -> None:
+
         if self.capacity <= 0:
             return
 
-        # Update an existing key.
+        # Update existing key.
         if key in self.key_to_value:
             self.key_to_value[key] = value
             self._update_frequency(key)
             return
 
-        # Evict the LFU key when the cache is full.
+        # Evict when cache is full.
         if len(self.key_to_value) >= self.capacity:
+
             least_recent_key = next(
                 iter(self.freq_to_keys[self.min_freq])
             )
@@ -389,10 +426,11 @@ class LFUCache:
             if not self.freq_to_keys[self.min_freq]:
                 del self.freq_to_keys[self.min_freq]
 
-        # Insert the new key with frequency 1.
+        # Insert new key with frequency 1.
         self.key_to_value[key] = value
         self.key_to_freq[key] = 1
         self.freq_to_keys[1][key] = None
+
         self.min_freq = 1
 
 
@@ -412,11 +450,14 @@ def program_155() -> None:
         if choice == "1":
             key = int(input("Enter key: "))
             value = int(input("Enter value: "))
+
             cache.put(key, value)
+
             print(f"Inserted/updated ({key}, {value}).")
 
         elif choice == "2":
             key = int(input("Enter key: "))
+
             print("Result:", cache.get(key))
 
         elif choice == "0":
@@ -431,19 +472,20 @@ def program_155() -> None:
 # ============================================================
 
 def run_all() -> None:
-    print("\n========== RUNNING PROGRAM 151 ==========")
+
+    print("\n========== PROGRAM 151 ==========")
     program_151()
 
-    print("\n========== RUNNING PROGRAM 152 ==========")
+    print("\n========== PROGRAM 152 ==========")
     program_152()
 
-    print("\n========== RUNNING PROGRAM 153 ==========")
+    print("\n========== PROGRAM 153 ==========")
     program_153()
 
-    print("\n========== RUNNING PROGRAM 154 ==========")
+    print("\n========== PROGRAM 154 ==========")
     program_154()
 
-    print("\n========== RUNNING PROGRAM 155 ==========")
+    print("\n========== PROGRAM 155 ==========")
     program_155()
 
 
@@ -452,6 +494,7 @@ def run_all() -> None:
 # ============================================================
 
 def main() -> None:
+
     while True:
         print("\n" + "=" * 55)
         print("       MONTH 10 — DAY 31 FINAL REVISION CHALLENGE")
